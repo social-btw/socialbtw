@@ -6,7 +6,7 @@ export default function Table({ title, scores }) {
 
   const rows = scores.map((row, index) => {
     return(
-      <tr className="personal-hiscores__row">
+      <tr key={index} className="personal-hiscores__row">
         <td className="right">{index + 1}</td>
         <td className="left">{row.name}</td>
         <td></td>
