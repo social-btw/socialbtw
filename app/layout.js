@@ -6,6 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function RootLayout({ children }) {
   return (
         <div align="center">
+          <br/>
           <div class="personal-hiscores__table">
             <div id="col2">
               <div id="headerHiscores"></div>

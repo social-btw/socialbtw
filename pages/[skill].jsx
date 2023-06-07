@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { getCompetition } from '@/util/wom-helper';
-import RootLayout from '@/app/layout';
 
 import Table from '@/app/components/Table';
 
