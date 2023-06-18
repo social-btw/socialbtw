@@ -1,9 +1,6 @@
 import Dropdown from "./Dropdown"
 
-export default function Table({ title, scores }) {
-  const competition = 'Utility';
-  const skills =  ['agility','construction','firemaking','slayer','thieving'];
-
+export default function Table({ title, scores, skills, competition }) {
   const rows = scores.map((row, index) => {
     return(
       <tr key={index} className="personal-hiscores__row">
