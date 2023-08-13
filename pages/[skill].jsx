@@ -14,7 +14,7 @@ export const getServerSideProps = async (context) => {
   const competition =  process.env.COMPETITION_NAME;
   
   const { skill } = context.query;
-  const competitionId = process.env[skill.toUpperCase()];
+  const competitionId = process.env[skill.toUpperCase()].split(',')[0];
 
   if (competitionId == null) {
     return { props: { scores: [] } }

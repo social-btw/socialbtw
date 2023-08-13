@@ -6,16 +6,16 @@ const client = new WOMClient({
 });
 
 export const getCompetition = async (id, limit) => {
-    const response = await client.competitions.getCompetitionDetails(id);
+  const response = await client.competitions.getCompetitionDetails(id);
 
-    return parseScores(response, limit);
+  return parseScores(response, 1, limit);
 }
 
-export const parseScores = async (response, limit) => {
+export const parseScores = async (response, multiplier = 1, limit) => {
   return response.participations.map((player) => {
     return {
       name: player.player.displayName,
-      score: player.progress.gained
+      score: player.progress.gained * multiplier
     }
   }).slice(0, limit)
 }
@@ -25,10 +25,11 @@ export const fetchAllCompetitions = async (limit) => {
   const competitionFetches = [];
 
   process.env.COMPETITION_SKILLS.split(',').forEach(skill => {
-    const competitionId = process.env[skill.toUpperCase()];
+    const competition = process.env[skill.toUpperCase()]
+    const [competitionId, multiplier] = competition.split(',')
 
     const compFetch = client.competitions.getCompetitionDetails(competitionId).then(response => {
-      return parseScores(response);
+      return parseScores(response, multiplier);
     })
 
     competitionFetches.push(compFetch);
