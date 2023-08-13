@@ -22,6 +22,8 @@ export const parseScores = async (response, multiplier = 1, limit) => {
 
 
 export const fetchAllCompetitions = async (limit) => {
+  console.log("Fetching all competitions...");
+
   const competitionFetches = [];
 
   process.env.COMPETITION_SKILLS.split(',').forEach(skill => {
