@@ -1,7 +1,7 @@
 import Dropdown from "./Dropdown"
 
 export default function Table({ title, scores, skills, competition }) {
-  const rows = scores.map((row, index) => {
+  const rows = scores != null ? scores.map((row, index) => {
     return(
       <tr key={index} className="personal-hiscores__row">
         <td className="right">{index + 1}</td>
@@ -10,7 +10,14 @@ export default function Table({ title, scores, skills, competition }) {
         <td className="right">{row.score.toLocaleString()}</td>
       </tr>
     )
-  });
+  }) : (
+    <tr className="personal-hiscores__row">
+        <td className="right"></td>
+        <td className="left"><b>Loading...</b></td>
+        <td></td>
+        <td className="right"></td>
+      </tr>
+  );
 
   return (
     <table>
