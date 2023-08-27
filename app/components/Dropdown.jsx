@@ -10,7 +10,7 @@ export default function Dropdown({ title, skills, competition }) {
   if(skills.length > 1) {
     return (
       <div class="dropdown">
-        <button class="dropbtn">{title} ▼</button>
+        <button class="dropbtn">{title} XP ▼</button>
         <div class="dropdown-content">
           <Link href="/">{competition}</Link>
           {options}
