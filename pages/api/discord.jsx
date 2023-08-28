@@ -48,9 +48,9 @@ const addSkill = (name, womId, pointsMultiplier) => {
 }
 
 const deployValues = async () => {
-  const result = await deploy();
+  const result = await deploy() ? 'Success :tada:' : 'Failure :crying_cat_face:';
 
-  return `Deploying comp settings :rocket: ${result}`
+  return `Deploying comp settings :rocket: ... ${result}`
 }
 
 export default async function handler(req, res) {
