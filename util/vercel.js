@@ -86,7 +86,7 @@ export const deploy = async () => {
     target: 'production'
   })
 
-  vercelApi(requestUrl, 'post', body).then(res => {
+  await vercelApi(requestUrl, 'post', body).then(res => {
     console.log(res.status)
 
     return res.text()
