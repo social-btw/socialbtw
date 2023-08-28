@@ -133,7 +133,7 @@ export default async function handler(req, res) {
       });
     }
   // Async deploy request 
-  } else if(req.method == 'PUT') {
+  } else {
     const { token } = req.body
 
     if(token == undefined) {
