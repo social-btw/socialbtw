@@ -67,6 +67,8 @@ export default async function handler(req, res) {
   if (type === InteractionType.APPLICATION_COMMAND) {
     const { name, options } = data;
 
+    console.log(data)
+
     let response;
 
     switch(name) {
