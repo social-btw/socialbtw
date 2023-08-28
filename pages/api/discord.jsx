@@ -47,13 +47,13 @@ const addSkill = (name, womId, pointsMultiplier) => {
   return response;
 }
 
-const deployValues = () => {
-  deploy();
+const deployValues = async () => {
+  const result = await deploy();
 
-  return `Deploying comp settings :rocket:`
+  return `Deploying comp settings :rocket: ${result}`
 }
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const { type, data } = req.body;
 
   if (verify(req) == false || req.method !== 'POST') {
@@ -81,7 +81,7 @@ export default function handler(req, res) {
         response = addSkill(skillName, womId, pointsMultiplier)
         break;
       case 'deploy':
-        response = deployValues()
+        response = await deployValues()
         break;
     }
 
