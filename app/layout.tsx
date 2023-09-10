@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import styles from '@/styles/hiscores.module.css'
 import { runescapeChat07 } from './fonts/fonts'
 
+import { Analytics } from '@vercel/analytics/react';
+
 export const metadata: Metadata = {
   title: 'Social BTW',
   description: 'Official website of Social BTW OSRS clan',
@@ -38,6 +40,7 @@ export default function RootLayout({
           <div className={styles.hiscoresFooter} />
         </main>
       </body>
+      <Analytics />
     </html>
   )
 }
