@@ -171,7 +171,7 @@ export async function POST(req: NextRequest) {
       case 'add':
         const skillName = options.find(option => option.name === 'name')!.value as string
         const womId = options.find(option => option.name === 'wom_id')!.value as string
-        const pointsMultiplier = options.find(option => option.name === 'points_multiplier')!.value as number
+        const pointsMultiplier = options.find(option => option.name === 'points_multiplier')?.value as number
 
         response = addSkill(skillName, womId, pointsMultiplier)
         break;
