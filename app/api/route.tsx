@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { fetchAllCompetitions } from '@/util/wom-helper';
+import { fetchAllCompetitions } from '@/lib/wom';
 
 export const dynamic = 'force-dynamic'
  

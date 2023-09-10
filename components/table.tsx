@@ -1,6 +1,11 @@
-import Dropdown from "./Dropdown"
+import Dropdown from "./dropdown"
+import { TableProps } from "../lib/types";
 
-export default function Table({ title, scores, skills, competition }) {
+export default function Table(
+  { 
+    title, 
+    scores,
+  }: TableProps) {
   const rows = scores != null ? scores.map((row, index) => {
     return(
       <tr key={index} className="personal-hiscores__row">
@@ -22,15 +27,15 @@ export default function Table({ title, scores, skills, competition }) {
   return (
     <table>
     <caption>
-      <Dropdown title={title.charAt(0).toUpperCase() + title.slice(1)} competition={competition} skills={skills}/>
+      <Dropdown title={title.charAt(0).toUpperCase() + title.slice(1)} />
     </caption>
 
     <thead>
       <tr>
-        <th class="right">Rank</th>
-        <th class="left">Name</th>
+        <th className="right">Rank</th>
+        <th className="left">Name</th>
         <th> </th>
-        <th class="right">XP</th>
+        <th className="right">XP</th>
       </tr>
     </thead>
     <tbody id="personal-hiscores__tbody">
