@@ -79,9 +79,11 @@ const getEnvVar = async (name: string) => {
  * @param name - Name of skill to add to skill list
  */
 const updateSkillList = async (name: string) => {
-  const currentSkills = await getEnvVar('NEXT_PUBLIC_COMPETITION_SKILLS');
+  const compSkillsList: string[] = (await getEnvVar('NEXT_PUBLIC_COMPETITION_SKILLS')).split(',');
 
-  setEnvVar('NEXT_PUBLIC_COMPETITION_SKILLS', `${currentSkills},${name.toLowerCase()}`)
+  compSkillsList.push(name.toLowerCase())
+
+  setEnvVar('NEXT_PUBLIC_COMPETITION_SKILLS', compSkillsList.filter(i => i).join())
 }
 
 /**
