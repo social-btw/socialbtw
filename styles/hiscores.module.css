@@ -1,0 +1,19 @@
+.hiscoresHeader {
+  background: url(https://www.runescape.com/img/rsp777/hiscores/scroll_top.gif) no-repeat;
+  width: 379px;
+  height: 36px;
+}
+
+.hiscoresContent {
+  width: 379px;
+  position: relative;
+  background: url(https://www.runescape.com/img/rsp777/hiscores/scroll_middle.gif) repeat-y;
+  line-height: 18px;
+  color: black;
+}
+
+.hiscoresFooter {
+  background: url(https://www.runescape.com/img/rsp777/hiscores/scroll_bottom.gif) no-repeat;
+  width: 379px;
+  height: 36px;
+}

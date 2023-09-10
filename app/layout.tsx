@@ -1,5 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import styles from '@/styles/hiscores.module.css'
+import { runescapeChat07 } from './fonts/fonts'
 
 export const metadata: Metadata = {
   title: 'Social BTW',
@@ -14,20 +16,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div align='center'>
-          <br />
-          <div className="personal-hiscores__table">
-            <div id="col2">
-              <div id="headerHiscores"></div>
-              <div className="hiscoresHiddenBG">
-                <div id="contentHiscores">
-                  {children}
-                </div>
-              </div>
-              <div id="footerHiscores"></div>
-            </div>
+        <main className={runescapeChat07.className}>
+          <div className={styles.hiscoresHeader} />
+          <div className={styles.hiscoresContent}>
+            {children}
           </div>
-        </div>
+          <div className={styles.hiscoresFooter} />
+        </main>
       </body>
     </html>
   )

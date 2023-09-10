@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { DropdownProps } from '../lib/types';
+import { DropdownProps } from '@/lib/types';
+import styles from '@/styles/dropdown.module.css'
+import { runescapeChatBold07 } from '@/app/fonts/fonts';
 
 export default function Dropdown(
   { 
@@ -16,17 +18,17 @@ export default function Dropdown(
 
   if(skills.length > 1) {
     return (
-      <div className="dropdown">
-        <button className="dropbtn">{title} XP ▼</button>
-        <div className="dropdown-content">
-          <Link href="/">{competition}</Link>
+      <div className={styles.dropdown}>
+        <button className={runescapeChatBold07.className + " " + styles.dropdownButton}>{title} XP ▼</button>
+        <div className={styles.dropdownContent}>
+          <Link className={runescapeChatBold07.className} href="/">{competition}</Link>
           {options}
         </div>
       </div>
     )
   } else {
     return (
-      <div className="dropbtn">
+      <div className={styles.dropdownButton}>
         {title}
       </div>
     )
