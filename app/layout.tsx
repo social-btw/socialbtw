@@ -14,9 +14,9 @@ export const metadata: Metadata = {
     url: 'https://www.socialbtw.com',
     images: [
       {
-        url: 'https://www.socialbtw.com/gnome.png',
-        width: 400,
-        height: 400,
+        url: 'https://www.socialbtw.com/socialbtw.jpg',
+        width: 1920,
+        height: 1102,
       },
     ],
     locale: 'en_CA',
