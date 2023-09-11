@@ -1,0 +1,25 @@
+.table {
+  border-spacing: 5px;
+  width: 100%;
+  padding-right: 30px;
+}
+
+.left {
+  text-align: left;
+  margin-right: auto;
+}
+
+.right {
+  text-align: right;
+  margin-left: auto;
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  font-size: 18px;
+}
