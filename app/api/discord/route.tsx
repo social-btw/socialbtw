@@ -59,10 +59,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: response
+        content: ''
       }
     }, { status: 200 });
   }
+
+  return NextResponse.json({ error: 'Bad request' }, { status: 400 });
 }
 
 /**
