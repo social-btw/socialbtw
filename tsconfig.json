@@ -30,14 +30,6 @@
     },
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "util/discord-commands.js"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "util/discord-commands.js", "lib/__mocks__/wom.js", "__test__/lib/wom.test.js"],
+  "exclude": ["node_modules"]
 }

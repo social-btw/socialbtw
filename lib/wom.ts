@@ -1,10 +1,17 @@
 import { GetCompetitionDetailsResponse, PlayerScore, ScoreTally } from "@/lib/types";
 import { WOMClient } from "@wise-old-man/utils";
 
-const client = new WOMClient({
-  apiKey: process.env.WOM_KEY,
-  userAgent: process.env.DISCORD_NAME
-});
+let client: WOMClient;
+
+const getClient = () => {
+  if (!client) {
+    client = new WOMClient({
+      apiKey: process.env.WOM_KEY,
+      userAgent: process.env.DISCORD_NAME
+    });
+  }
+  return client;
+}
 
 /**
  * Takes the response body from a GetCompetitionDetails API request and returns an array of PlayerScores
@@ -13,7 +20,7 @@ const client = new WOMClient({
  * @param limit - if present only the return the first results up to this amount
  * @returns Promise of an array of PlayerScores containing `name` and `score`
  */
-const parseScores = async (response: GetCompetitionDetailsResponse, multiplier = 1, limit?: number): Promise<PlayerScore[]> => {
+export const parseScores = async (response: GetCompetitionDetailsResponse, multiplier = 1, limit?: number): Promise<PlayerScore[]> => {
   return response.participations.map((participation) => {
     return {
       name: participation.player.displayName,
@@ -27,7 +34,7 @@ const parseScores = async (response: GetCompetitionDetailsResponse, multiplier =
  * @param scoreTally - Hash table with player name as the key, and the summed score as the value
  * @returns Sorted array of PlayerScores
  */
-const sortScores = (scoreTally: ScoreTally): PlayerScore[] => {
+export const sortScores = (scoreTally: ScoreTally): PlayerScore[] => {
   let sortable = [];
 
   for (var player in scoreTally) {
@@ -47,8 +54,10 @@ const sortScores = (scoreTally: ScoreTally): PlayerScore[] => {
  * @param limit - if present only the return the first results up to this amount
  * @returns Promise of an array of PlayerScores containing `name` and `score`
  */
-export const getCompetition = async (id: number, limit?: number): Promise<PlayerScore[]> => {
-  const response: GetCompetitionDetailsResponse = await client.competitions.getCompetitionDetails(id);
+export const getCompetition = async (id: number, limit?: number, client?: WOMClient): Promise<PlayerScore[]> => {
+  const womClient = client ?? getClient()
+
+  const response: GetCompetitionDetailsResponse = await womClient.competitions.getCompetitionDetails(id);
 
   return parseScores(response, 1, limit);
 }
@@ -58,8 +67,9 @@ export const getCompetition = async (id: number, limit?: number): Promise<Player
  * @param limit if present only the return the first results up to this amount
  * @returns Promise of an array of PlayerScores containing `name` and `score`
  */
-export const fetchAllCompetitions = async (limit?: number): Promise<PlayerScore[]> => {
+export const fetchAllCompetitions = async (limit?: number, client?: WOMClient): Promise<PlayerScore[]> => {
   const competitionFetches: Promise<PlayerScore[]>[] = []
+  const womClient = client ?? getClient()
 
   process.env.NEXT_PUBLIC_COMPETITION_SKILLS!.split(',').forEach(skill => {
     const competition = process.env[`NEXT_PUBLIC_${skill.toUpperCase()}`]!
@@ -67,7 +77,7 @@ export const fetchAllCompetitions = async (limit?: number): Promise<PlayerScore[
 
     const multiplier = _multiplier ? parseInt(_multiplier) : undefined
 
-    const compFetch = client.competitions.getCompetitionDetails(parseInt(competitionId)).then((response: GetCompetitionDetailsResponse) => {
+    const compFetch = womClient.competitions.getCompetitionDetails(parseInt(competitionId)).then((response: GetCompetitionDetailsResponse) => {
       return parseScores(response, multiplier);
     })
 

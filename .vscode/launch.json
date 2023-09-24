@@ -10,5 +10,11 @@
       "request": "launch",
       "command": "npm run dev"
     },
+    {
+      "name": "Run Unit Tests",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run test"
+    },
   ]
 }
