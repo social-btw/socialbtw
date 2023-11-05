@@ -9,6 +9,7 @@ export default function Dropdown(
   } : DropdownProps) {
   const competition = process.env.NEXT_PUBLIC_COMPETITION_NAME!
   const skills = process.env.NEXT_PUBLIC_COMPETITION_SKILLS!.split(',')
+  const titleSuffix = process.env.NEXT_PUBLIC_TITLE_SUFFIX || ''
 
   const options  = skills.map((name) => {
     return (
@@ -19,7 +20,7 @@ export default function Dropdown(
   if(skills.length > 1) {
     return (
       <div className={styles.dropdown}>
-        <button className={runescapeChatBold07.className + " " + styles.dropdownButton}>{title} XP ▼</button>
+        <button className={runescapeChatBold07.className + " " + styles.dropdownButton}>{title} {titleSuffix} ▼</button>
         <div className={styles.dropdownContent}>
           <Link className={runescapeChatBold07.className} href="/">{competition}</Link>
           {options}
